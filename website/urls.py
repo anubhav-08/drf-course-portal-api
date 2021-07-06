@@ -18,8 +18,11 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from website import settings
 
+from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('login/', login_view),
+    # path('logout/', logout_view),
     path('api/courses/', include('courses.urls')),
     path('api/cart/', include('cart.urls')),
     path('api-auth/', include('rest_framework.urls')),

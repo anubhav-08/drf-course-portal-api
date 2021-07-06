@@ -1,7 +1,8 @@
-from django.db import close_old_connections, models
+from django.db import models
 from django.utils.timezone import now
 from django.utils.text import slugify
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
 
@@ -16,7 +17,6 @@ class Course(models.Model):
     language = models.CharField(max_length=200)
     price = models.IntegerField()
     thumbnail = models.ImageField(upload_to='thumbnails/')
-    num_of_rating = models.IntegerField(default=0)
     created_at = models.DateTimeField(default=now)
     updated_at = models.DateTimeField(default=now)
     
@@ -27,10 +27,9 @@ class Course(models.Model):
         self.slug = slugify(self.title)
         super(Course, self).save(*args, **kwargs)
 
-
-class RegisteredCourse(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registered_courses')
+class RegisteredCourses(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='registered')
     courses = models.ManyToManyField(Course)
 
     def __str__(self):
-        return (self.user.name + "courses opted")
+        return (self.user.username + "'s courses")
