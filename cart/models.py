@@ -7,9 +7,10 @@ from courses.models import Course
 User = get_user_model()
 
 # Create your models here.
+
 class Cart(models.Model):
     user = models.OneToOneField(User, related_name='cart', on_delete=models.CASCADE, primary_key=True)
     courses = models.ManyToManyField(Course)
 
     def __str__(self):
-        return (self.user.name + "'s cart")
+        return (self.user.username + "'s cart")

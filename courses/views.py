@@ -11,3 +11,8 @@ class CourseApiView(mixins.ListModelMixin, generics.GenericAPIView):
 
     def get(self, request):
         return self.list(request)
+
+
+# class BuyCourseApiView(generics.GenericAPIView):
+
+#     def post(self, request, pk):

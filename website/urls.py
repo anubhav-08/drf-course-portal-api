@@ -21,6 +21,6 @@ from website import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/courses/', include('courses.urls')),
-    # path('api/cart/', include('cart.urls')),
+    path('api/cart/', include('cart.urls')),
     path('api-auth/', include('rest_framework.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
